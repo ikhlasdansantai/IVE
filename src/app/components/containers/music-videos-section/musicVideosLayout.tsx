@@ -88,10 +88,7 @@ export default function MusicVideosLayout({ videos }: { videos: any }) {
     },
   ]);
 
-  if (videos === null) {
-    console.log("still null");
-    return <div>Loading....</div>;
-  }
+  if (videos === null) return <div>Loading....</div>;
 
   const router = useRouter();
 
