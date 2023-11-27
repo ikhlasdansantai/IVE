@@ -58,13 +58,9 @@ export default function MemberName({ params }: any) {
 
   if (data === null) return <Loading />;
   if (!data) return <p>No profile data</p>;
-  console.log(params);
-
-  if (!data.data.find((member) => member.name === params.name)) {
-    return <NotFound />;
-  }
 
   const filteredMember = data.data.find((member) => member.name === params.name);
+  if (!filteredMember) return <NotFound />;
 
   const getImages = filteredMember?.assets;
   const getName = filteredMember?.nickname;
