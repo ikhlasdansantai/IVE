@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prisma:dev": "npx prisma generate --schema=./src/prisma/schema.prisma",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^5.6.0",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "class-variance-authority": "^0.7.0",
     "classnames": "^2.3.2",
