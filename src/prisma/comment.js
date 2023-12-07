@@ -1,7 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-export const createComment = async (title, author, tags) => {
+export const createComment = async (title, author, tags, isLoggin) => {
+  if (!isLoggin) {
+    return false;
+  } else {
+    return true;
+  }
   const comment = await prisma.comment.create({
     data: {
       title,
