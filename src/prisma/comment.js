@@ -1,8 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-export const createComment = async (title, author, tags) => {
-  const comment = await prisma.comment.create({
+export const createPost = async (title, author, tags) => {
+  const post = await prisma.post.create({
     data: {
       title,
       author,
@@ -10,21 +10,21 @@ export const createComment = async (title, author, tags) => {
     },
   });
 
-  return comment;
+  return post;
 };
 
-export const getAllComment = async () => {
-  const comments = await prisma.comment.findMany();
+export const getAllPost = async () => {
+  const posts = await prisma.post.findMany();
 
-  return comments;
+  return posts;
 };
 
-export const deleteComment = async (id) => {
-  const comment = await prisma.comment.delete({
+export const deletePost = async (id) => {
+  const post = await prisma.post.delete({
     where: {
       id: id,
     },
   });
 
-  return comment;
+  return post;
 };
