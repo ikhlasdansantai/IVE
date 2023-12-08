@@ -1,9 +1,4 @@
-"use client";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import Loading from "./loading";
-
-function FromFans({ data }: { data: any }) {
+export default function page({ data }: { data: any }) {
   const handleMsg = (e: any) => {
     console.log(e);
   };
@@ -100,39 +95,6 @@ function FromFans({ data }: { data: any }) {
           <p>Reactions 20</p>
         </div>
       </div>
-    </div>
-  );
-}
-
-export default function Page() {
-  const [data, setData] = useState(null);
-
-  const getComments = async () => {
-    const res = await fetch("/api/community");
-    if (!res.ok) {
-      alert("Server Internal Error \nTry Again Later");
-    }
-    const data = await res.json();
-    setData(data);
-    console.log(data);
-  };
-
-  useEffect(() => {
-    getComments();
-  }, []);
-
-  if (data === null) return <Loading />;
-  const commentDatas = data.data;
-
-  return (
-    <div className="grid grid-cols-2 text-center max-w-5xl mx-auto mt-40">
-      <ul className="space-y-10 text-left">
-        <li className="text-2xl">👋 Selamat Datang</li>
-        <li className="text-2xl">
-          Dari Fans Untuk <b>IVE</b>
-        </li>
-      </ul>
-      <FromFans data={commentDatas} />
     </div>
   );
 }

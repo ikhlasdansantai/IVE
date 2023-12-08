@@ -1,3 +1,4 @@
+import { retreiveData } from "@/_lib/firebase/store";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -34,6 +35,7 @@ export async function GET() {
       id: 5,
       name: "liz",
       nickname: "Liz 🐱",
+      positions: ["Vokalis"],
       age: 18,
       assets: ["https://i.pinimg.com/564x/f7/13/14/f713141717b2f874dc6be0eee9e47da6.jpg", "https://i.pinimg.com/564x/e9/64/8d/e9648debaf6cc9ea43c1d30e3f156413.jpg", "https://i.pinimg.com/564x/f1/2e/eb/f12eeb7b26c38ba607a28c63a3ad7664.jpg"],
     },
@@ -54,6 +56,6 @@ export async function GET() {
     },
   ];
 
-  return NextResponse.json({ data });
+  const member = await retreiveData("member");
+  return NextResponse.json({ data: member });
 }
-// export default functi

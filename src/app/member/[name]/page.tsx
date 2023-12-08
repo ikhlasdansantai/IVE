@@ -70,7 +70,7 @@ export default function MemberName({ params }: any) {
     <>
       <Suspense fallback={<Loading />}>
         <span className={`test__CSS_MODULE ${styles.bgOrange}`}></span>
-        <div className="max-w-5xl mx-auto px-4 py-10 sm:py-20">
+        <div className="max-w-5xl mx-auto px-4 mt-20 py-10 sm:py-20">
           <h1 className="text-2xl sm:text-5xl">{getName}</h1>
           <ul className="flex gap-2 flex-wrap mt-2 text-slate-400">
             {getPositions &&
