@@ -14,3 +14,6 @@ Technology
 - NextJS + TypeScript
 - Prisma ORM
 - MongoDB
+
+Lib Pendukung
+- Clerk / NextAuth
