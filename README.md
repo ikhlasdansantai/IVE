@@ -16,4 +16,4 @@ Technology
 - MongoDB
 
 Lib Pendukung
-- Clerk / NextAuth
+- NextAuth
