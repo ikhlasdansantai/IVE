@@ -17,3 +17,6 @@ Technology
 
 Lib Pendukung
 - NextAuth
+
+Yang udah done
+- memperbaiki reusable api call
