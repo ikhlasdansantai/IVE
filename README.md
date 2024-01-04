@@ -15,8 +15,12 @@ Technology
 - Prisma ORM
 - MongoDB
 
+
 Lib Pendukung
 - NextAuth
 
+Yang Belum Done
+- disable navbar di dashboard
+  
 Yang udah done
 - memperbaiki reusable api call
