@@ -13,7 +13,7 @@ Fitur
 Technology
 - NextJS + TypeScript
 - Prisma ORM
-- MongoDB
+- PostgreSQL
 
 
 Lib Pendukung
