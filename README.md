@@ -15,9 +15,9 @@ Technology
 - Prisma ORM
 - PostgreSQL
 
-
 Lib Pendukung
-- NextAuth
+- NextAuth v5
+- shadcn
 
 Yang Belum Done
 - disable navbar di dashboard
