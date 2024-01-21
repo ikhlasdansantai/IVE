@@ -21,6 +21,7 @@ Lib Pendukung
 
 Yang otw
 - fitur register + data masuk ke database
+- fitur login
 
 Yang Belum Done
 - disable navbar di dashboard
