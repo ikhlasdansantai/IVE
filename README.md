@@ -29,3 +29,5 @@ Yang Belum Done
 Yang udah done
 - memperbaiki reusable api call
 - fitur post
+
+# Move to kanban
