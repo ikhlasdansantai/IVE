@@ -14,6 +14,7 @@ Technology
 - NextJS + TypeScript
 - Prisma ORM
 - PostgreSQL
+- FramerMotion
 
 Lib Pendukung
 - NextAuth v5
