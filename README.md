@@ -26,6 +26,8 @@ Yang otw
 
 Yang Belum Done
 - disable navbar di dashboard
+
+Lets working on this proj for the next day !
   
 Yang udah done
 - memperbaiki reusable api call
