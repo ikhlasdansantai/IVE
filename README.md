@@ -32,5 +32,6 @@ Lets working on this proj for the next day !
 Yang udah done
 - memperbaiki reusable api call
 - fitur post
+- member detail page
 
 # Move to kanban
