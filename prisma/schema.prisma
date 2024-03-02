@@ -54,11 +54,21 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+enum IveMemberName {
+  Yujin
+  Gaeul
+  Rei
+  Wonyoung
+  Liz
+  Leeseo
+}
+
 model IveMemberProfile {
-  id        String  @unique @default(cuid())
+  id        String  @id @default(cuid())
   name      String
   age       Int
-  images    String[]
+  about     String
+  assets    IveMemberAssets[]
   stageName String
   birthName String
   birthday  String
@@ -68,4 +78,10 @@ model IveMemberProfile {
   funFacts  String[]
 }
 
-
+model IveMemberAssets {
+  id        String  @id @default(cuid())
+  iveMemberProfileId  String
+  iveMemberProfile IveMemberProfile @relation(fields: [iveMemberProfileId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  mainProfileImage  String
+  detailProfileImages String[]
+}
