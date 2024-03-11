@@ -23,9 +23,11 @@ Lib Pendukung
 Yang otw
 - fitur register + data masuk ke database
 - fitur login
+- fitur emoji video
 
 Yang Belum Done
 - disable navbar di dashboard
+
 
 Lets working on this proj for the next day !
   
