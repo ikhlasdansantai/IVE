@@ -37,3 +37,5 @@ Yang udah done
 - member detail page
 
 # Move to kanban
+
+- libur dulu ya sabtu&minggu
