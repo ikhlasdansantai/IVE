@@ -32,6 +32,7 @@ model User {
   role          UserRole   @default(USER)
   accounts      Account[]
   post          Post[]
+  bias          IveMemberProfile[]
 }
 
 
@@ -66,6 +67,7 @@ enum IveMemberName {
 model IveMemberProfile {
   id        String  @id @default(cuid())
   name      String
+  emoji     String
   age       Int
   about     String
   assets    IveMemberAssets[]
@@ -76,12 +78,51 @@ model IveMemberProfile {
   nation    String
   height    Int
   funFacts  String[]
+  votes     Int   @default(0)
+  userId    String?
+  userVotes User? @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
 
 model IveMemberAssets {
   id        String  @id @default(cuid())
   iveMemberProfileId  String
-  iveMemberProfile IveMemberProfile @relation(fields: [iveMemberProfileId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  iveMemberProfile IveMemberProfile @relation(fields: [iveMemberProfileId], references: [id])
   mainProfileImage  String
   detailProfileImages String[]
+}
+
+model VideoWithEmoji {
+  id        String      @id @default(cuid())
+  videoUrl  String
+  emojis    Emojis[]   
+  chats     Chat[]
+}
+
+model Emojis {
+  id                String         @id @default(cuid())
+  emojiIcon         String  
+  emojiTotal        Int
+  videoWithEmoji    VideoWithEmoji @relation(fields: [videoWithEmojiId], references: [id], onDelete: Cascade)
+  videoWithEmojiId  String         
+  reactByUsers      ReactByUser[]  
+}
+
+model ReactByUser {
+  id              String    @id @default(cuid())
+  userId          String    
+  name            String    
+  emojis          Emojis    @relation(fields: [emojisId], references: [id])
+  emojisId        String    
+}
+
+model Chat {
+  id        String  @id @default(cuid())
+  userId    String
+  chatBody  String
+  userName  String
+  userProfile  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  videoWithEmoji    VideoWithEmoji @relation(fields: [videoWithEmojiId], references: [id], onDelete: Cascade)
+  videoWithEmojiId  String
 }

@@ -20,14 +20,14 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "lh3.googleusercontent.com ",
+        hostname: "lh3.googleusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
       },
     ],
   },
-  // images: {
-  //   // formats: ["image/avif", "image/webp"],
-  //   domains: ["i.ytimg.com", "i.pinimg.com", "media.giphy.com"], // Tambahkan host i.ytimg.com ke dalam array
-  // },
 };
 
 module.exports = nextConfig;
