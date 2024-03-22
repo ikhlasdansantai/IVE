@@ -35,6 +35,7 @@ Yang udah done
 - memperbaiki reusable api call
 - fitur post
 - member detail page
+- vote member
 
 # Move to kanban
 
