@@ -7,11 +7,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import AlertDialogDemo from "./cAlertDialog";
-import classNames from "classnames";
-import { Button } from "@/components/ui/button";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { useEffect, useState } from "react";
-import { getVoteDatas } from "@/actions/demoVote";
+import { useState } from "react";
 
 export default function CTooltip({
   children,
@@ -23,7 +20,6 @@ export default function CTooltip({
   revalidator: any;
 }) {
   const [votes, setVotes] = useState<null | any>();
-  const [bias, setBias] = useState<any>();
   const handleUpdate = async () => {
     const session = await useCurrentUser();
     // Redirect to login / register page
@@ -42,51 +38,66 @@ export default function CTooltip({
     revalidator();
   };
 
-  // Demo
-  useEffect(() => {
-    const coba = async () => {
-      const session = await useCurrentUser();
-      console.log(session);
-
-      if (session) {
-        const results = await getVoteDatas({ id: session?.id });
-        setBias(results);
-        console.log("client", results);
-      }
-    };
-    coba();
-  }, [votes]);
-
-  const temp = bias && bias.find((bias: any) => bias.name === name);
-
-  if (bias) {
-    console.log("bias", bias);
-    console.log("name", name);
-    console.log("res", temp);
-  }
-
   return (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
           <AlertDialogDemo name={name} handleUpdate={handleUpdate}>
-            <Button
+            {children}
+            {/* <Tunggu /> */}
+            {/* <Button
               id="vote__btn"
               variant="outline"
               className={classNames({
-                "flex items-center gap-2 ": true,
+                "flex items-center gap-2": true,
                 "bg-emerald-300 hover:bg-emerald-200 focus:bg-emerald-200":
-                  temp,
+                  bias && bias.find((biasItem: any) => biasItem.name === name),
               })}
             >
-              {children}
-            </Button>
+            </Button> */}
           </AlertDialogDemo>
         </TooltipTrigger>
         <TooltipContent>
-          <p>Vote For {name}</p>
+          <p>Vote for {name}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
+    // <TooltipProvider>
+    //   <Tooltip>
+    //     <TooltipTrigger asChild>
+    //       <AlertDialogDemo name={name} handleUpdate={handleUpdate}>
+    //         {/* {bias && bias.find((biasItem: any) => biasItem.name === name) ? (
+    //           <Button
+    //             id="vote__btn"
+    //             variant="outline"
+    //             className={classNames({
+    //               "flex items-center gap-2 bg-emerald-300 hover:bg-emerald-200 focus:bg-emerald-200":
+    //                 true,
+    //             })}
+    //           >
+    //             {children}
+    //           </Button>
+    //         ) : (
+    //           <Button
+    //             id="vote__btn"
+    //             variant="outline"
+    //             className={classNames({
+    //               "flex items-center gap-2": true,
+    //               "bg-emerald-300 hover:bg-emerald-200 focus:bg-emerald-200":
+    //                 bias &&
+    //                 bias.find((biasItem: any) => biasItem.name === name),
+    //             })}
+    //           >
+    //             {children}
+    //           </Button>
+    //         )} */}
+    //         <Button>{children}</Button>
+    //       </AlertDialogDemo>
+    //     </TooltipTrigger>
+    //     <TooltipContent>
+    //       <p>Vote For {name}</p>
+    //     </TooltipContent>
+    //   </Tooltip>
+    // </TooltipProvider>
   );
 }
