@@ -39,6 +39,7 @@ Yang udah done
 - vote member
 - validasi email  
 
-# Move to kanban
+refactor
 
+# Move to kanban
 - libur dulu ya sabtu&minggu
