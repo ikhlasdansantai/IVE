@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import IVELogo from "/public/ive__logo.jpg";
 import Image from "next/image";
 import Instagram from "@/components/common/icons/instagram";
@@ -6,8 +5,8 @@ import Youtube from "@/components/common/icons/youtube";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#181a2a]">
-      <div className="mx-auto grid max-w-7xl grid-cols-3 px-4 py-8">
+    <footer className="w-full bg-[#181a2a] pb-12 md:pb-0">
+      <div className="mx-auto grid max-w-7xl gap-y-6 md:grid-cols-2 lg:grid-cols-3 px-4 py-8">
         <div className="left">
           <figure className="grid__content w-12">
             <Image
