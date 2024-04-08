@@ -168,3 +168,21 @@ export const links: linkProps[] = [
   { label: "Contents", href: "/contents" },
   { label: "Community", href: "/community" },
 ];
+
+export type MemberProfileDetailProps = {
+  stageName: string;
+  emoji: string;
+  positions: string[];
+};
+
+export type MemberBioProps = {
+  name: string;
+  stageName: string;
+  emoji: string;
+  positions: string[];
+  about: string;
+  birthday: string;
+  height: string;
+  nation: string;
+  birthName: string;
+};
