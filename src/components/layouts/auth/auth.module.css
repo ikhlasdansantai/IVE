@@ -1,0 +1,27 @@
+.seperate {
+  position: relative;
+}
+
+.seperate::before,
+.seperate::after {
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: #e5e7eb;
+  width: 45%;
+  margin: auto;
+  height: 2px;
+  border-radius: 4px;
+}
+
+.seperate::before {
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.seperate::after {
+  right: 0;
+  top: 0;
+  bottom: 0;
+}

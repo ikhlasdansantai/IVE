@@ -22,15 +22,14 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     existsingUser.password as string,
   );
   if (!Hashedpassword) return { error: "Password Is Incorrect!" };
-
+  
   try {
     await signIn("credentials", {
       email,
       password,
       redirectTo: DEFAULT_LOGIN_REDIRECT,
     });
-
-    return { success: "Email Sent!" };
+    return { success: "Login Success!" };
   } catch (e) {
     if (e instanceof AuthError) {
       return { error: "Something went wrong" };
