@@ -10,12 +10,12 @@ export default function MemberProfile({
   positions,
 }: MemberProfileProps) {
   return (
-    <div className="mt-14">
+    <div className="mt-8 md:mt-14">
       <h1 className="text-2xl font-semibold sm:text-5xl">
         {stageName}
         {emoji}
       </h1>
-      <ul className="mt-4 flex gap-2 text-slate-400">
+      <ul className="mt-1 md:mt-4 flex gap-2 text-slate-400">
         {positions?.map((data: string, index: number) => (
           <li key={index}>
             {data}
