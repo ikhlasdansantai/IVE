@@ -43,3 +43,4 @@ release soon
 
 # Move to kanban
 - libur dulu ya sabtu&minggu
+- gass lagi
