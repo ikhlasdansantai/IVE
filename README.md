@@ -9,6 +9,7 @@ Fitur
 - User bisa mengirim pesan (untuk idol)
 - User punya dashboard
 - User bisa me reaction pesan
+- reactions
 
 Technology
 - NextJS + TypeScript
