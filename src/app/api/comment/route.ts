@@ -1,4 +1,4 @@
-import { createPost, getAllPost } from "../../../prisma/comment";
+// import { createPost, getAllPost }
 import { NextRequest, NextResponse } from "next/server";
 
 type ResponseData = {
@@ -18,14 +18,14 @@ type Comment = {
   message: string;
 };
 
-export async function GET() {
-  const comments: any = await getAllPost();
-  return NextResponse.json({ status: 200, message: "lu sih anjay", data: comments });
-}
+// export async function GET() {
+//   const comments: any = await getAllPost();
+//   return NextResponse.json({ status: 200, message: "lu sih anjay", data: comments });
+// }
 
-export async function POST(req: NextRequest) {
-  const { author, tags, title }: ResponseData = await req.json();
-  const newComment = await createPost(title, author, tags);
+// export async function POST(req: NextRequest) {
+//   const { author, tags, title }: ResponseData = await req.json();
+//   const newComment = await createPost(title, author, tags);
 
   // if (!newComment) {
   //   return NextResponse.json({
@@ -35,18 +35,18 @@ export async function POST(req: NextRequest) {
   //   });
   // }
 
-  return NextResponse.json({
-    status: 200,
-    message: "OK!",
-    data: newComment,
-  });
+  // return NextResponse.json({
+  //   status: 200,
+  //   message: "OK!",
+  //   data: newComment,
+  // });
 
   // return NextResponse.json({
   //   status: 200,
   //   message: "OK",
   //   data: newComment,
   // });
-}
+// }
 
 // switch (req.method) {
 //   case "POST": {
