@@ -28,7 +28,7 @@ export default async function ContentDetailPage({ params }: any) {
             src={`https://www.youtube.com/embed/${data.id}`}
             className="aspect-video w-full overflow-hidden rounded-lg"
           ></iframe>
-          <ShowEmojis />
+          <ShowEmojis id={id} />
           <ContentDetail
             title={data.snippet.title}
             desc={data.snippet.description}
