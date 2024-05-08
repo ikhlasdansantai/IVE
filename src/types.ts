@@ -62,16 +62,16 @@ export const voteDatas: VoteDataProps[] = [
 ];
 
 export type EmojiProps = {
-  src: string;
-  alt: string;
+  emojiCode: string;
+  emojiIcon: string;
   counter: number;
   reactByUsers: { idUser: string; name: string }[];
 };
 
 export const baseEmojis: EmojiProps[] = [
   {
-    src: "https://fonts.gstatic.com/s/e/notoemoji/latest/1f631/512.gif",
-    alt: "😱",
+    emojiCode: "1f631",
+    emojiIcon: "😱",
     counter: 1,
     reactByUsers: [
       {
@@ -81,8 +81,8 @@ export const baseEmojis: EmojiProps[] = [
     ],
   },
   {
-    src: "https://fonts.gstatic.com/s/e/notoemoji/latest/1f60d/512.gif",
-    alt: "😍",
+    emojiCode: "1f60d",
+    emojiIcon: "😍",
     counter: 12,
     reactByUsers: [
       {
@@ -96,8 +96,8 @@ export const baseEmojis: EmojiProps[] = [
     ],
   },
   {
-    src: "https://fonts.gstatic.com/s/e/notoemoji/latest/1f970/512.gif",
-    alt: "🥰",
+    emojiCode: "1f970",
+    emojiIcon: "🥰",
     counter: 13,
     reactByUsers: [
       {
@@ -111,8 +111,8 @@ export const baseEmojis: EmojiProps[] = [
     ],
   },
   {
-    src: "https://fonts.gstatic.com/s/e/notoemoji/latest/1f60e/512.gif",
-    alt: "😎",
+    emojiCode: "1f60e",
+    emojiIcon: "😎",
     counter: 14,
     reactByUsers: [
       {
@@ -126,8 +126,8 @@ export const baseEmojis: EmojiProps[] = [
     ],
   },
   {
-    src: "https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif",
-    alt: "🔥",
+    emojiCode: "1f525",
+    emojiIcon: "🔥",
     counter: 15,
     reactByUsers: [
       {
@@ -141,8 +141,8 @@ export const baseEmojis: EmojiProps[] = [
     ],
   },
   {
-    src: "https://fonts.gstatic.com/s/e/notoemoji/latest/1f496/512.gif",
-    alt: "💖",
+    emojiCode: "1f496",
+    emojiIcon: "💖",
     counter: 1,
     reactByUsers: [
       {
@@ -164,9 +164,9 @@ export type linkProps = {
 
 export const links: linkProps[] = [
   { label: "Home", href: "/" },
-  { label: "Profile", href: "/profiles" },
+  { label: "Profiles", href: "/profiles" },
   { label: "Contents", href: "/contents" },
-  { label: "Community", href: "/community" },
+  // { label: "Community", href: "/community" },
 ];
 
 export type MemberProfileDetailProps = {
