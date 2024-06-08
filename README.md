@@ -219,3 +219,74 @@ user klik video spesifik, semisal membuka video berdasarkan id (/contents/5eSsw4
 
 // Kita Sederhanakan (cara baru)
 // const { count, increase } = useAppStore(useShallow((state) => ({ count: state.count, increase: state.increase })));
+
+# test konten video ada emoji nya
+
+POST /content/:id
+
+req body
+
+in the nutshell
+user klik emoji --> id mana yang di klik? --> tambah 1 pada id yang di klik tersebut
+
+full alur
+user klik video spesifik, semisal membuka video berdasarkan id (/contents/5eSsw4UJx4M), ---> menampilkan ui dari detail video tersebut, mulai dari chat, emoji, dll, ----> user klik id pada salah satu emoji ---> kirim ke be yang isinya idVideo yaitu (idVideo: 5eSsw4UJx4M) beserta emoji yang diklik user, misal (emojiId: 111), ----> kita validasi, apakah user sudah pernah melakukan reaction pada emoji ini? jika iya unlike, jika tidak, like tambah 1, ----> jika like tambah 1, tambahkan ke data emojinya, yang isinya adalah user yang melakukan reaction pada video ini, dengan emoji id ini.
+
+```json
+{
+  "idVideo": "12345678",
+  "emojis": [
+    {
+      "emojiId": "111",
+      "emojiIcon": "https://fonts.gstatic.com/s/e/notoemoji/latest/2764_fe0f/512.gif",
+      "emojiTotal": 123,
+      "reactByUsers": [
+        {
+          "idUser": "user123",
+          "name": "Iksan Ganteng"
+        },
+        {
+          "idUser": "user456",
+          "name": "Skrillex"
+        }
+      ]
+    },
+    {
+      "emojiId": "222",
+      "emojiIcon": "https://fonts.gstatic.com/s/e/notoemoji/latest/1f970/512.gif",
+      "emojiTotal": 3333,
+      "reactByUsers": [
+        {
+          "idUser": "user456",
+          "name": "Skrillex"
+        }
+      ]
+    },
+    {
+      "emojiId": "333",
+      "emojiIcon": "https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif",
+      "emojiTotal": 222,
+      "reactByUsers": [
+        {
+          "idUser": "user123",
+          "name": "LeeHi"
+        }
+      ]
+    }
+  ]
+}
+```
+
+// Mengambil semua store yang ada di useAppStore
+// const store = useAppStore();
+// console.log({ store });
+
+// Kita gunakan function selector untuk handle ini
+// const count = useAppStore((state) => state.count);
+// const increaseCount = useAppStore((state) => state.increase);
+
+// Kita Sederhanakan (cara lama)
+// const { count, increase } = useAppStore((state) => ({ count: state.count, increase: state.increase }), shallow);
+
+// Kita Sederhanakan (cara baru)
+// const { count, increase } = useAppStore(useShallow((state) => ({ count: state.count, increase: state.increase })));
