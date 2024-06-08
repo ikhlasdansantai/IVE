@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Image from "next/image";
 import React, { useState } from "react";
 
 export default function UploadPageDemo() {
@@ -34,10 +35,11 @@ export default function UploadPageDemo() {
         <>
           <h5>Image Preview</h5>
           <figure className="w-60">
-            <img
+            <Image
               src={fileUrl}
               alt={file.name}
               className="block max-w-full object-cover"
+              style={{ maxWidth: "100%", height: "100%" }}
             />
           </figure>
           <Button
