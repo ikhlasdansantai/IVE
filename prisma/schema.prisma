@@ -1,0 +1,129 @@
+datasource db {
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Post {
+  id          String    @id @default(cuid())
+  userId      String
+  title       String
+  author      String
+  tags        String?
+  user        User      @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())     
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          UserRole   @default(USER)
+  accounts      Account[]
+  post          Post[]
+  bias          IveMemberProfile[]
+}
+
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+enum IveMemberName {
+  Yujin
+  Gaeul
+  Rei
+  Wonyoung
+  Liz
+  Leeseo
+}
+
+model IveMemberProfile {
+  id        String  @id @default(cuid())
+  name      String
+  emoji     String
+  age       Int
+  about     String
+  assets    IveMemberAssets[]
+  stageName String
+  birthName String
+  birthday  String
+  positions String[]
+  nation    String
+  height    Int
+  funFacts  String[]
+  votes     Int   @default(0)
+  userId    String?
+  userVotes User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
+
+model IveMemberAssets {
+  id        String  @id @default(cuid())
+  iveMemberProfileId  String
+  iveMemberProfile IveMemberProfile @relation(fields: [iveMemberProfileId], references: [id])
+  mainProfileImage  String
+  detailProfileImages String[]
+}
+
+model VideoWithEmoji {
+  id        String      @id @default(cuid())
+  videoUrl  String
+  emojis    Emojis[]   
+  chats     Chat[]
+}
+
+model Emojis {
+  id                String         @id @default(cuid())
+  emojiIcon         String  
+  emojiCode         String
+  emojiTotal        Int
+  videoWithEmoji    VideoWithEmoji @relation(fields: [videoWithEmojiId], references: [id], onDelete: Cascade)
+  videoWithEmojiId  String         
+  reactByUsers      ReactByUser[]  
+}
+
+model ReactByUser {
+  id              String    @id @default(cuid())
+  userId          String    
+  name            String    
+  emojis          Emojis    @relation(fields: [emojisId], references: [id])
+  emojisId        String    
+}
+
+model Chat {
+  id        String  @id @default(cuid())
+  userId    String
+  chatBody  String
+  userName  String
+  userProfile  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  videoWithEmoji    VideoWithEmoji @relation(fields: [videoWithEmojiId], references: [id], onDelete: Cascade)
+  videoWithEmojiId  String
+}
