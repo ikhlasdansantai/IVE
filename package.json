@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "prisma:dev": "npx prisma generate --schema=./src/prisma/schema.prisma",
-    "build": "npx prisma generate && next build",
+    "build": "next build",
+    "postinstall": "prisma generate",
     "start": "next start",
     "lint": "next lint"
   },
