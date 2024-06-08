@@ -1,3 +1,5 @@
+<<<<<<< staging
+
 # Ive API Data Backup :3
 
 ```json
@@ -219,8 +221,9 @@ user klik video spesifik, semisal membuka video berdasarkan id (/contents/5eSsw4
 
 // Kita Sederhanakan (cara baru)
 // const { count, increase } = useAppStore(useShallow((state) => ({ count: state.count, increase: state.increase })));
+<<<<<<< HEAD
 
-# test konten video ada emoji nya
+## test konten video ada emoji nya
 
 POST /content/:id
 
@@ -290,3 +293,62 @@ user klik video spesifik, semisal membuka video berdasarkan id (/contents/5eSsw4
 
 // Kita Sederhanakan (cara baru)
 // const { count, increase } = useAppStore(useShallow((state) => ({ count: state.count, increase: state.increase })));
+=======
+=======
+Main Layouts
+
+- Header
+- Community Page
+- Detail Videos
+- Dashboard (OTW)
+
+Fitur
+
+- Login Dan Dashboard
+- User bisa mengirim pesan (untuk idol)
+- User punya dashboard
+- User bisa me reaction pesan
+- reactions
+
+Technology
+
+- NextJS + TypeScript
+- Prisma ORM
+- PostgreSQL
+- FramerMotion
+
+Lib Pendukung
+
+- NextAuth v5
+- shadcn
+
+Yang otw
+
+- fitur register + data masuk ke database
+- fitur login
+- fitur emoji video
+
+Yang Belum Done
+
+- disable navbar di dashboard
+- UI Dahboard FORM
+  .
+
+Lets working on this proj for the next day !
+
+Yang udah done
+
+- memperbaiki reusable api call
+- fitur post
+- member detail page
+- vote member
+- validasi email
+
+release soon
+
+# Move to kanban
+
+- libur dulu ya sabtu&minggu
+- gass lagi
+  > > > > > > > release
+  > > > > > > > 16693dbe226bf2cd17647dcdb6ac3fc590a2523f
