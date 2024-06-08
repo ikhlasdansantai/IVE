@@ -7,7 +7,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import AlertDialogDemo from "./cAlertDialog";
-import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { useCurrentUser as UseCurrentUser } from "@/hooks/useCurrentUser";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -23,7 +23,7 @@ export default function CTooltip({
   const router = useRouter();
   const [votes, setVotes] = useState<null | any>();
   const handleUpdate = async () => {
-    const session = await useCurrentUser();
+    const session = await UseCurrentUser();
     // Redirect to login / register page
     if (!session) {
       alert("Please login first");

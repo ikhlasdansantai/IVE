@@ -3,7 +3,7 @@
 import { getVoteDatas } from "@/actions/getVoteDatas";
 import CTooltip from "@/components/layouts/custom/cToopTip";
 import { Button } from "@/components/ui/button";
-import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { useCurrentUser as UseCurrentUser } from "@/hooks/useCurrentUser";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
 
@@ -30,7 +30,7 @@ export default function VoteMember() {
   };
 
   const getMemberBias = async () => {
-    const session = await useCurrentUser();
+    const session = await UseCurrentUser();
 
     if (session) {
       const results = await getVoteDatas({ id: session?.id });
@@ -87,4 +87,3 @@ export default function VoteMember() {
     </section>
   );
 }
-

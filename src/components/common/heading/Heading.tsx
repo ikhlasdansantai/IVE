@@ -1,4 +1,16 @@
-export default function Heading({ type, children, className, size, color }: { type: string; children: string; className: string; size: string; color: string }) {
+export default function Heading({
+  type,
+  title,
+  className,
+  size,
+  color,
+}: {
+  type: string;
+  title: string;
+  className: string;
+  size: string;
+  color: string;
+}) {
   interface Variants {
     size: { [key: string]: string };
     colors: { [key: string]: string };
@@ -11,5 +23,17 @@ export default function Heading({ type, children, className, size, color }: { ty
       default: "text-black",
     },
   };
-  return <>{type === "h1" ? <h1 className={`${className}`}>{children}</h1> : <h2 className={`${className} ${variants.size[size as string]} ${variants.colors[color as string]}`}>{children}</h2>}</>;
+  return (
+    <>
+      {type === "h1" ? (
+        <h1 className={`${className}`}>{title}</h1>
+      ) : (
+        <h2
+          className={`${className} ${variants.size[size as string]} ${variants.colors[color as string]}`}
+        >
+          {title}
+        </h2>
+      )}
+    </>
+  );
 }

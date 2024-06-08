@@ -49,7 +49,7 @@ export default async function Page() {
   );
 
   return (
-    <section className="section__container space-y-12 mt-32">
+    <section className="section__container mt-32 space-y-12">
       <figure className="flex h-[200px] w-full flex-col items-center justify-center rounded-xl bg-[#F9F3F0] text-white ">
         <Image
           src={logo}

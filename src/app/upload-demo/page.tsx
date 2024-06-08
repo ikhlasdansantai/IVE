@@ -20,7 +20,7 @@ export default function UploadPageDemo() {
   };
 
   return (
-    <section className="max-w-7xl mx-auto mt-40 min-h-[100dvh]">
+    <section className="mx-auto mt-40 min-h-[100dvh] max-w-7xl">
       <h2 className="mb-4">fitur Upload File 👷‍♀️</h2>
       <Input
         onChange={handleChange}
@@ -37,7 +37,7 @@ export default function UploadPageDemo() {
             <img
               src={fileUrl}
               alt={file.name}
-              className="max-w-full block object-cover"
+              className="block max-w-full object-cover"
             />
           </figure>
           <Button

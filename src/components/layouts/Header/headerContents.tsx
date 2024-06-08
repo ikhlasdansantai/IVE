@@ -9,7 +9,7 @@ export default function HeaderContents() {
     <header className="relative mx-auto grid w-full max-w-7xl items-center justify-between gap-10 gap-y-14 overflow-x-hidden px-4 lg:mt-40 lg:grid-cols-2">
       <div className="header__titles relative max-sm:top-10 sm:bottom-20">
         <h2 className="text-5xl text-slate-900 lg:text-7xl">
-          IT'S Time To <b>IVE</b>
+          ITS Time To <b>IVE</b>
         </h2>
         <p className="text-balance mt-2 text-sm leading-loose sm:text-base lg:w-[50ch]">
           Saatnya untuk bersinar dan menginspirasi. Bergabunglah dengan mereka

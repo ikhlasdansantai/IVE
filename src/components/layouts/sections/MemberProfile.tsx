@@ -27,7 +27,7 @@ export default function MemberProfile() {
 
   return (
     <section className="section__container min-h-[100dvh] px-0 pb-10 md:py-20">
-      <h2 className="text-3xl lg:text-4xl">Member's Profile</h2>
+      <h2 className="text-3xl lg:text-4xl">Members Profile</h2>
       <div className="member__profile__container mt-4 grid grid-cols-1 gap-10 sm:grid-cols-2 md:mt-8 lg:grid-cols-3">
         {members?.data.map((member: any, index: number) => {
           return (

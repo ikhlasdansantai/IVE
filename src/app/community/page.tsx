@@ -11,7 +11,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useInternalFetch } from "@/hooks/useInternalFetch";
+import { useInternalFetch as UseInternalFetch } from "@/hooks/useInternalFetch";
 import { useForm } from "react-hook-form";
 import { PostUserSchema } from "@/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -70,7 +70,7 @@ function FromFans() {
   });
 
   const handleGetPostUser = async () => {
-    const fetchData = await useInternalFetch({
+    const fetchData = await UseInternalFetch({
       url: "/api/post",
       method: "GET",
     });

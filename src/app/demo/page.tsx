@@ -44,11 +44,11 @@ export default async function DemoPage() {
       </div>
       <div className="grid__2 col-start-2 col-end-4 border-l border-r px-8">
         <b className="text-2xl">Hello Ikhsan ganteng</b>
-        <p>Congratulations, You're now officialy become a member</p>
+        <p>Congratulations, Youre now officialy become a member</p>
 
         <div className="grid__again__cols__2 grid grid-cols-2">
           <div className="col-start-1">
-            <h5>Your Bias 😎</h5>
+            <h5>Your Bias</h5>
             <div className="cards flex gap-4">
               <figure className="h-20 w-20 rounded-xl bg-gray-600"></figure>
               <figure className="h-20 w-20 rounded-xl bg-gray-600"></figure>
