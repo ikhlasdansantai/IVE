@@ -16,10 +16,8 @@ export default function ChatInputs({
   const session = useSession();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  console.log(data?.videoUrl);
   const onSubmit = (e: React.FormEvent<HTMLFormElement> | any) => {
     e.preventDefault();
-    alert(e.target[0].value);
     setIsLoading(true);
 
     const postChat = async () => {

@@ -1,14 +1,4 @@
-type MemberBioProps = {
-  name: string;
-  stageName: string;
-  emoji: string;
-  positions: string[];
-  about: string;
-  birthday: string;
-  height: string;
-  nation: string;
-  birthName: string;
-};
+import { MemberBioProps } from "@/types";
 
 export default function MemberBio({
   name,
@@ -25,20 +15,20 @@ export default function MemberBio({
       <p className="mt-2">{about}</p>
       <ul className="mt-6 space-y-3">
         <li className="border-l-4 border-red-900 pl-2">
-          Nama Panggung: {name}
+          Stage name: {name}
         </li>
         <li className="border-l-4 border-red-900 pl-2">
-          Nama Lahir: {birthName}
+          BirthName: {birthName}
         </li>
         <li className="border-l-4 border-red-900 pl-2">
-          Posisi: {positions[0]}
+          Positions: {positions[0]}
         </li>
         <li className="border-l-4 border-red-900 pl-2">
-          Ulang Tahun: {birthday}
+          Birthday: {birthday}
         </li>
-        <li className="border-l-4 border-red-900 pl-2">Kebangsaan: {nation}</li>
+        <li className="border-l-4 border-red-900 pl-2">Nationality: {nation}</li>
         <li className="border-l-4 border-red-900 pl-2">Zodiak: Pisces</li>
-        <li className="border-l-4 border-red-900 pl-2">Tinggi: {height}cm</li>
+        <li className="border-l-4 border-red-900 pl-2">Height: {height}cm</li>
       </ul>
     </div>
   );

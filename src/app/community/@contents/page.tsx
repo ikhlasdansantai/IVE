@@ -13,7 +13,7 @@ export default function page({ data }: { data: any }) {
       </div>
 
       {/* Development */}
-      {data.map((data, index) => (
+      {/* {data.map((data, index) => (
         <div className="card text-left mt-10">
           <h2 className="text-2xl font-medium">{data.comment}</h2>
           <div className="tags my-4 flex gap-3 flex-wrap">
@@ -33,7 +33,7 @@ export default function page({ data }: { data: any }) {
             <p>Reactions 20</p>
           </div>
         </div>
-      ))}
+      ))} */}
 
       {/* End Of Development */}
 

@@ -6,7 +6,11 @@ interface useFetchProps {
   requestBody?: string;
 }
 
-export const useInternalFetch = async ({ url, method, requestBody }: useFetchProps) => {
+export const useInternalFetch = async ({
+  url,
+  method,
+  requestBody,
+}: useFetchProps) => {
   try {
     const response =
       method === "GET"

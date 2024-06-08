@@ -21,7 +21,7 @@ export default async function ContentDetailPage({ params }: any) {
   const data = await getContentDetail(id);
 
   return (
-    <main className="mx-auto mt-[5.6rem] grid min-h-[100dvh] w-full max-w-7xl grid-cols-1 items-stretch gap-4 overflow-y-hidden p-4 max-[640px]:overflow-y-scroll md:my-40 md:grid-cols-3">
+    <main className="mx-auto mt-32 grid min-h-[100dvh] w-full max-w-7xl grid-cols-1 items-stretch gap-4 overflow-y-hidden p-4 max-[640px]:overflow-y-scroll md:my-40 md:grid-cols-3">
       {data.items.map((data: any, index: number) => (
         <section key={index} className="md:col-span-2">
           <iframe
@@ -30,8 +30,9 @@ export default async function ContentDetailPage({ params }: any) {
           ></iframe>
           <ShowEmojis id={id} />
           <ContentDetail
-            title={data.snippet.title}
-            desc={data.snippet.description}
+            title={data?.snippet?.title}
+            desc={data?.snippet?.description}
+            publishedAt={data?.snippet?.publishedAt}
           />
           {/* Live Chat For Mobile */}
           <ContentDetailChats id={id} className="mt-8 md:hidden" />

@@ -1,4 +1,5 @@
 import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 export default function Comment() {
   return (
@@ -9,7 +10,7 @@ export default function Comment() {
           <li className="py-3 sm:py-4">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image" />
+                <Image className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image" />
               </div>
               <div className="flex-1 min-w-0 ms-4">
                 <p className="text-sm font-medium text-gray-900 truncate dark:text-white">ikhlasdansantai</p>

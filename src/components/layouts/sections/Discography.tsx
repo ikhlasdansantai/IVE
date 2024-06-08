@@ -7,7 +7,7 @@ import mine from "/public/albums/mine.png";
 const albums = [tripleIve, waveIve, loveDive, mine];
 export default function Discography() {
   return (
-    <div className="mx-auto mt-20 max-w-7xl p-4">
+    <section className="mx-auto mt-20 max-w-7xl p-4">
       <h2 className="text-3xl lg:text-4xl">Discography</h2>
       <div className="albums__container mt-10 grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {albums.map((album, index) => (
@@ -22,6 +22,6 @@ export default function Discography() {
           </figure>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

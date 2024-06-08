@@ -6,7 +6,6 @@ import ShowEmojis from "@/components/common/emojis/showEmojis";
 require("dotenv").config();
 
 export default function MusicVideosLayout({ videos }: { videos: any }) {
-  if (videos === null) return <div>Loading....</div>;
   return (
     <div className="mv__cards relative mt-6 grid grid-cols-1 gap-10 overflow-hidden sm:grid-cols-2 lg:grid-cols-3 ">
       {videos
