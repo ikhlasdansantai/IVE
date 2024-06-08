@@ -1,16 +1,5 @@
-import { updateVideoContent } from "@/data/content";
 import { db } from "@/lib/prisma";
 import { NextResponse } from "next/server";
-
-export async function POST(req: Request) {
-  const { videoId, id, emojiIcon } = await req.json();
-
-  return NextResponse.json({
-    status: 200,
-    message: "Success",
-    data: { id, videoId, emojiIcon },
-  });
-}
 
 export async function GET(
   req: Request,

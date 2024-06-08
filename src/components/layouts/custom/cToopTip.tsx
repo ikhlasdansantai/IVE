@@ -9,6 +9,7 @@ import {
 import AlertDialogDemo from "./cAlertDialog";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function CTooltip({
   children,
@@ -19,11 +20,16 @@ export default function CTooltip({
   name: string;
   revalidator: any;
 }) {
+  const router = useRouter();
   const [votes, setVotes] = useState<null | any>();
   const handleUpdate = async () => {
     const session = await useCurrentUser();
     // Redirect to login / register page
-    if (!session) return alert("Please login first");
+    if (!session) {
+      alert("Please login first");
+      router.push("/login");
+      return;
+    }
 
     const updateVote = await fetch("/api/profile", {
       method: "POST",
@@ -44,17 +50,6 @@ export default function CTooltip({
         <TooltipTrigger asChild>
           <AlertDialogDemo name={name} handleUpdate={handleUpdate}>
             {children}
-            {/* <Tunggu /> */}
-            {/* <Button
-              id="vote__btn"
-              variant="outline"
-              className={classNames({
-                "flex items-center gap-2": true,
-                "bg-emerald-300 hover:bg-emerald-200 focus:bg-emerald-200":
-                  bias && bias.find((biasItem: any) => biasItem.name === name),
-              })}
-            >
-            </Button> */}
           </AlertDialogDemo>
         </TooltipTrigger>
         <TooltipContent>
@@ -62,42 +57,5 @@ export default function CTooltip({
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
-    // <TooltipProvider>
-    //   <Tooltip>
-    //     <TooltipTrigger asChild>
-    //       <AlertDialogDemo name={name} handleUpdate={handleUpdate}>
-    //         {/* {bias && bias.find((biasItem: any) => biasItem.name === name) ? (
-    //           <Button
-    //             id="vote__btn"
-    //             variant="outline"
-    //             className={classNames({
-    //               "flex items-center gap-2 bg-emerald-300 hover:bg-emerald-200 focus:bg-emerald-200":
-    //                 true,
-    //             })}
-    //           >
-    //             {children}
-    //           </Button>
-    //         ) : (
-    //           <Button
-    //             id="vote__btn"
-    //             variant="outline"
-    //             className={classNames({
-    //               "flex items-center gap-2": true,
-    //               "bg-emerald-300 hover:bg-emerald-200 focus:bg-emerald-200":
-    //                 bias &&
-    //                 bias.find((biasItem: any) => biasItem.name === name),
-    //             })}
-    //           >
-    //             {children}
-    //           </Button>
-    //         )} */}
-    //         <Button>{children}</Button>
-    //       </AlertDialogDemo>
-    //     </TooltipTrigger>
-    //     <TooltipContent>
-    //       <p>Vote For {name}</p>
-    //     </TooltipContent>
-    //   </Tooltip>
-    // </TooltipProvider>
   );
 }

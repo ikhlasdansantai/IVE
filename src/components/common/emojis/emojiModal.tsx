@@ -17,7 +17,6 @@ export default function EmojiModal({
 }) {
   const session = useSession();
   const postEmojis = async ({ emojiCode, emojiIcon }: any) => {
-    alert(`Click, ${emojiIcon} + ${emojiCode}`);
     const response = await fetch("/api/content", {
       method: "POST",
       body: JSON.stringify({

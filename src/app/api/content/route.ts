@@ -1,8 +1,10 @@
+import { getVideoContentById, updateVideoContent } from "@/data/content";
+import { getUserById } from "@/data/user";
 import { db } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const { videoId, id, emojiIcon, userId, chatBody } = await req.json();
+  const { videoId, id, emojiIcon, emojiCode, chatBody } = await req.json();
   const key = process.env.SECRET_KEY;
   const getIveVideos = await fetch(
     `https://youtube.googleapis.com/youtube/v3/videos?key=${key}&part=snippet,contentDetails&id=${videoId}`,
@@ -17,41 +19,82 @@ export async function POST(req: Request) {
     });
   }
 
-  if (iveVideoDatas?.items[0]?.snippet?.channelTitle !== "IVE") {
+  if (
+    iveVideoDatas?.items[0]?.snippet?.channelTitle !== "IVE" &&
+    iveVideoDatas?.items[0]?.snippet?.channelTitle !== "STARSHIP"
+  ) {
     return NextResponse.json({
       status: 404,
       message: "This Video is not IVE Video",
     });
   }
 
-  const findVideoWithEmojiByUrl = await db.videoWithEmoji.findFirst({
-    where: {
-      videoUrl: videoId,
-    },
-    include: {
-      chats: true,
-      emojis: {
-        include: {
-          reactByUsers: true,
-        },
-      },
-    },
-  });
-  const findUserById = await db.user.findUnique({
-    where: {
-      id,
-    },
-    select: {
-      id: true,
-      name: true,
-      image: true,
-    },
-  });
+  const findVideoWithEmojiByUrl = await getVideoContentById(videoId);
+
+  const findUserById = await getUserById(id);
 
   if (!findUserById) {
     return NextResponse.json({
       status: 404,
       message: "USER NOT FOUND",
+    });
+  }
+
+  // ketika user belum melakukan reaction sama sekali
+  if (!findVideoWithEmojiByUrl) {
+    if (emojiIcon) {
+      await db.videoWithEmoji.create({
+        data: {
+          videoUrl: videoId,
+          emojis: {
+            create: {
+              emojiCode: emojiCode,
+              emojiIcon: emojiIcon,
+              emojiTotal: +1,
+              reactByUsers: {
+                create: {
+                  name: findUserById?.name as string,
+                  userId: id as string,
+                },
+              },
+            },
+          },
+        },
+      });
+
+      const updatedVideoContent = await getVideoContentById(videoId);
+      return NextResponse.json({
+        status: 201,
+        message: "Emoji added successfully",
+        dataResponse: updatedVideoContent,
+      });
+    }
+    if (chatBody) {
+      await db.videoWithEmoji.create({
+        data: {
+          videoUrl: videoId,
+          chats: {
+            create: {
+              userId: findUserById?.id as string,
+              chatBody,
+              userName: findUserById?.name as string,
+              userProfile: findUserById?.image as string,
+            },
+          },
+        },
+      });
+
+      return NextResponse.json({
+        status: 201,
+        message: "Chat added successfully",
+        dataResponse: "success",
+      });
+    }
+
+    return NextResponse.json({
+      status: 400,
+      message: "Something went wrong",
+      dataResponse: "fail",
     });
   }
 
@@ -70,120 +113,96 @@ export async function POST(req: Request) {
         },
       },
     });
+
+    const updatedVideoContent = await getVideoContentById(videoId);
+    return NextResponse.json({
+      status: 201,
+      message: "Update Success!",
+      dataResponse: updatedVideoContent,
+    });
   }
 
-  await db.emojis.create({
-    data: {
-      emojiIcon: emojiIcon,
-      emojiTotal: 1,
-      reactByUsers: {
-        create: {
-          name: findUserById?.name as string,
-          userId: id,
-        },
-      },
-      videoWithEmoji: {
-        connect: {
-          id: findVideoWithEmojiByUrl?.id,
-        },
-      },
-    },
-  });
+  // ketika user sudah melakukan reaction
+  if (findVideoWithEmojiByUrl) {
+    const emoji = findVideoWithEmojiByUrl.emojis.find(
+      (emoji) => emoji.emojiIcon === emojiIcon,
+    );
 
-  return NextResponse.json({
-    status: 200,
-    message: "Emoji created successfully",
-  });
+    if (emoji) {
+      const userReacted = emoji.reactByUsers.some((user) => user.userId === id);
+
+      if (userReacted) {
+        await db.reactByUser.delete({
+          where: {
+            id: emoji?.reactByUsers.find((user) => user?.userId === id)?.id,
+          },
+        });
+
+        const updatedVideoContent = await updateVideoContent({
+          videoId: findVideoWithEmojiByUrl.id,
+          emojiId: emoji.id,
+          operation: "decrement",
+        });
+
+        return NextResponse.json({
+          status: 200,
+          message: "Reaction removed successfully",
+          data: updatedVideoContent,
+        });
+      } else {
+        await db.reactByUser.create({
+          data: {
+            name: findUserById?.name as string,
+            userId: id,
+            emojis: {
+              connect: {
+                id: emoji.id,
+              },
+            },
+          },
+        });
+
+        const updatedVideoContent = await updateVideoContent({
+          videoId: findVideoWithEmojiByUrl.id,
+          emojiId: emoji.id,
+          operation: "increment",
+        });
+
+        return NextResponse.json({
+          status: 200,
+          message: "Reaction added successfully",
+          data: updatedVideoContent,
+        });
+      }
+    } else {
+      await db.emojis.create({
+        data: {
+          videoWithEmoji: {
+            connect: {
+              id: findVideoWithEmojiByUrl.id,
+            },
+          },
+          emojiCode: emojiCode as string,
+          emojiIcon: emojiIcon as string,
+          emojiTotal: +1,
+          reactByUsers: {
+            create: {
+              name: findUserById?.name as string,
+              userId: id as string,
+            },
+          },
+        },
+      });
+
+      const updatedVideoContent = await getVideoContentById(videoId);
+      return NextResponse.json({
+        status: 201,
+        message: "Emoji kontol added successfully",
+        dataResponse: updatedVideoContent,
+      });
+    }
+  }
 }
-//   if (findVideoWithEmojiByUrl) {
-//     const emoji = findVideoWithEmojiByUrl.emojis.find(
-//       (emoji) => emoji.emojiIcon === emojiIcon,
-//     );
-
-//     if (emoji) {
-//       const userReacted = emoji.reactByUsers.some((user) => user.userId === id);
-
-//       if (userReacted) {
-//         await db.reactByUser.delete({
-//           where: {
-//             id: emoji?.reactByUsers.find((user) => user?.userId === id)?.id,
-//           },
-//         });
-
-//         await db.emojis.update({
-//           where: {
-//             id: emoji.id,
-//           },
-//           data: {
-//             emojiTotal: { decrement: 1 },
-//           },
-//         });
-
-//         return NextResponse.json({
-//           status: 200,
-//           message: "Reaction removed successfully",
-//           data: findVideoWithEmojiByUrl,
-//         });
-//       } else {
-//         await db.reactByUser.create({
-//           data: {
-//             name: findUserById?.name as string,
-//             userId: id,
-//             emojis: {
-//               connect: {
-//                 id: emoji.id,
-//               },
-//             },
-//           },
-//         });
-
-//         await db.emojis.update({
-//           where: {
-//             id: emoji.id,
-//           },
-//           data: {
-//             emojiTotal: { increment: 1 },
-//           },
-//         });
-
-//         return NextResponse.json({
-//           status: 200,
-//           message: "Reaction added successfully",
-//           data: findVideoWithEmojiByUrl,
-//         });
-//       }
-//     } else {
-//       await db.emojis.create({
-//         data: {
-//           emojiIcon: emojiIcon,
-//           emojiTotal: 1,
-//           reactByUsers: {
-//             create: {
-//               name: findUserById?.name as string,
-//               userId: id,
-//             },
-//           },
-//           videoWithEmoji: {
-//             connect: {
-//               id: findVideoWithEmojiByUrl.id,
-//             },
-//           },
-//         },
-//       });
-
-//       return NextResponse.json({
-//         status: 200,
-//         message: "Emoji created successfully",
-//       });
-//     }
-//   } else {
-//     return NextResponse.json({
-//       status: 404,
-//       message: "Video not found",
-//       data: iveVideoDatas,
-//     });
-//   }
-// }
 
 export async function GET() {
   const getVideoWithEmojiModel = await db.videoWithEmoji.findMany({

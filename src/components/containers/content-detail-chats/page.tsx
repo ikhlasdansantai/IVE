@@ -17,16 +17,22 @@ export default function ContentDetailChats({
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const getChats = async () => {
-    const response = await fetch(`/api/content/${id}`, {
-      method: "GET",
-    });
-    if (response.ok) {
-      const results = await response.json();
+    try {
+      const response = await fetch(`/api/content/${id}`, {
+        method: "GET",
+      });
+      if (response.ok) {
+        const results = await response.json();
+        setIsLoading(false);
+        setChats(results.data?.chats);
+        setData(results.data);
+      } else {
+        alert("Server internal error \nPlease Refresh Your Browser:)");
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
       setIsLoading(false);
-      setChats(results.data?.chats);
-      setData(results.data);
-    } else {
-      alert("Server internal error \nPlease Refresh Your Browser:)");
     }
   };
 

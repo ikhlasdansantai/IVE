@@ -24,12 +24,10 @@ export const getVideoContentById = async (videoId: string) => {
 export const updateVideoContent = async ({
   videoId,
   emojiId,
-  emojiIcon,
   operation,
 }: {
   videoId: string;
   emojiId: string;
-  emojiIcon: string;
   operation: "increment" | "decrement";
 }) => {
   try {

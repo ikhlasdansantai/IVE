@@ -1,6 +1,6 @@
 "use client";
 
-import { getVoteDatas } from "@/actions/demoVote";
+import { getVoteDatas } from "@/actions/getVoteDatas";
 import CTooltip from "@/components/layouts/custom/cToopTip";
 import { Button } from "@/components/ui/button";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
@@ -87,3 +87,4 @@ export default function VoteMember() {
     </section>
   );
 }
+
