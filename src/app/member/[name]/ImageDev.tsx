@@ -8,11 +8,10 @@ export default function ImageDev({ src }: any) {
       src={src}
       alt={`${src} img`}
       loading="lazy"
-      width={200}
-      height={100}
+      width={400}
+      height={400}
       quality={100}
-      style={{ width: "100%", height: "auto" }}
-      className="opacity-0 duration-500"
+      className="opacity-0 duration-500 max-w-full object-cover overflow-hidden aspect-square"
       // placeholder="blur"
       // blurDataURL="https://placehold.co/600x400"
       onLoadingComplete={(item) => item.classList.remove("opacity-0")}

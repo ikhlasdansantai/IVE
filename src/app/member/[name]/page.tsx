@@ -50,6 +50,7 @@ export default function MemberName({ params }: any) {
   const getData = async () => {
     const response = await getMemberData();
     setData(response);
+    console.log(response);
   };
 
   useEffect(() => {
@@ -132,11 +133,81 @@ export default function MemberName({ params }: any) {
               </figure>
             </div>
           </div>
+
+          <h2 className="text-2xl mt-20">From Community</h2>
+          <p className="mb-4">Submit Your Contents From Your Fav Bias❤</p>
+          {/* <div className="cards grid md:grid-cols-2 lg:grid-cols-3 gap-8"> */}
+          {/* </div> */}
+          <InfiniteMovingCards items={testimonials}>
+            <PostCardDemo />
+          </InfiniteMovingCards>
         </div>
       </Suspense>
     </>
   );
 }
+
+function PostCardDemo() {
+  return (
+    <div className="card text-left">
+      <h2 className="text-2xl font-medium">Spread love to my beloved maknae leeseo🦁</h2>
+      <div className="tags my-4 flex gap-3 flex-wrap">
+        <button className="text-xs bg-[#ef67a5] border border-[#ef67a5] px-2 py-1 rounded-lg text-white" title="member-name-tag">
+          Yujin 🐶
+        </button>
+        <button className="text-xs bg-[#ef67a5] border border-[#ef67a5] px-2 py-1 rounded-lg text-[#2a2a2a]/[.70]" title="member-name-tag">
+          Leeseo 🦁
+        </button>
+        <button className="text-xs bg-[#ef67a5] border border-[#ef67a5] px-2 py-1 rounded-lg text-white" title="member-name-tag">
+          Liz 🐱
+        </button>
+      </div>
+      <div className="user-info flex gap-2 text-slate-600 font-normal text-xs">
+        <p>ikhsan ganteng</p>
+        <p>2 Hari Yang Lalu</p>
+        <p>Reactions 20</p>
+      </div>
+    </div>
+  );
+}
+
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+const testimonials = [
+  {
+    quote:
+      "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.",
+    name: "Charles Dickens",
+    title: "A Tale of Two Cities",
+  },
+  {
+    quote: "To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
+    name: "William Shakespeare",
+    title: "Hamlet",
+  },
+  {
+    quote: "All that we see or seem is but a dream within a dream.",
+    name: "Edgar Allan Poe",
+    title: "A Dream Within a Dream",
+  },
+  {
+    quote: "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
+    name: "Jane Austen",
+    title: "Pride and Prejudice",
+  },
+  {
+    quote: "Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.",
+    name: "Herman Melville",
+    title: "Moby-Dick",
+  },
+];
+
+// function InfiniteMovingCardsDemo() {
+//   return (
+//     <div className="rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+//       <InfiniteMovingCards items={testimonials} direction="right" speed="slow" />
+//     </div>
+//   );
+// }
 
 // Kode
 {

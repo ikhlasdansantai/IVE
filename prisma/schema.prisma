@@ -101,6 +101,7 @@ model VideoWithEmoji {
 model Emojis {
   id                String         @id @default(cuid())
   emojiIcon         String  
+  emojiCode         String
   emojiTotal        Int
   videoWithEmoji    VideoWithEmoji @relation(fields: [videoWithEmojiId], references: [id], onDelete: Cascade)
   videoWithEmojiId  String         
