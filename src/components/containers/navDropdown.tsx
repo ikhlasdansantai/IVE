@@ -17,15 +17,9 @@ function UserLogin({ image }: { image?: string | any }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <figure className="w-20 cursor-pointer overflow-hidden rounded-full">
+        <figure className="aspect-square cursor-pointer overflow-hidden rounded-full">
           {image !== null ? (
-            <Image
-              src={image}
-              alt="gambar user"
-              style={{ maxWidth: "100%", height: "auto" }}
-              width={200}
-              height={200}
-            />
+            <Image src={image} alt="gambar user" width={50} height={50} />
           ) : (
             <User className="ml-auto block h-8 w-8" />
           )}
@@ -56,7 +50,7 @@ function UserLogin({ image }: { image?: string | any }) {
 export default function NavDropdown({ user }: any) {
   return (
     <div className="flex items-center justify-end">
-      <UserLogin image={user?.data?.user?.image} />;
+      <UserLogin image={user?.data?.user?.image} />
     </div>
   );
 }
