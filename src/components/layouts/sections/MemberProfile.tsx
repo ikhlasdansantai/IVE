@@ -22,9 +22,9 @@ export default function MemberProfile() {
   useEffect(() => {
     getMemberDatas();
   }, []);
-
   if (!members) return <Loading />;
 
+  
   return (
     <section className="section__container min-h-[100dvh] px-0 pb-10 md:py-20">
       <h2 className="text-3xl lg:text-4xl">Members Profile</h2>

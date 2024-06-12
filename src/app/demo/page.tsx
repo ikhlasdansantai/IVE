@@ -1,4 +1,4 @@
-import { auth, signOut } from "@/auth";
+// import { auth, signOut } from "@/auth";
 import { BugIcon, Home, Settings, Trophy } from "lucide-react";
 
 function HeaderUserDashboard() {
@@ -29,7 +29,7 @@ function HeaderUserDashboard() {
 }
 
 export default async function DemoPage() {
-  const session = await auth();
+  // const session = await auth();
   return (
     <main
       className="mt-10 grid min-h-[100dvh] w-full grid-cols-4"
@@ -65,6 +65,79 @@ export default async function DemoPage() {
     </main>
   );
 }
+
+// import { Box, Button, Container } from "@mui/material";
+// import { CldImage, CldUploadButton, CloudinaryUploadWidgetResults, CldUploadEventCallback, CldUploadButtonProps } from "next-cloudinary";
+// import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
+// import styles from "./page.module.css";
+import { useState } from "react";
+
+// export default function UploadImage() {
+//   const [imageUrl, setImageUrl] = useState<string | undefined>();
+//   const [publicId, setPublicId] = useState("");
+
+//   const handleSubmit = (results: CloudinaryUploadWidgetResults) => {
+//     console.log(results);
+//     console.log({ results });
+
+//     const info = results.info as object;
+
+//     if ("secure_url" in info && "public_id" in info) {
+//       const url = info.secure_url as string;
+//       const public_id = info.public_id as string;
+//       setImageUrl(url);
+
+//       console.log({ url });
+//       console.log({ public_id });
+//     }
+//   };
+
+//   const handleRemoveImg = (e: React.FormEvent) => {
+//     e.preventDefault();
+//   };
+
+//   return (
+//     <Container
+//       component="main"
+//       maxWidth="xl"
+//       sx={{ marginTop: 26, marginInline: "auto" }}
+//     >
+//       <CldUploadButton
+//         uploadPreset="raih1xf1"
+//         className={styles.upload__profile__button}
+//         onSuccess={handleSubmit}
+//         options={{
+//           sources: ["local"],
+//           multiple: false,
+//           maxFiles: 1,
+//         }}
+//       >
+//         <>
+//           {imageUrl !== undefined ? (
+//             <CldImage
+//               alt="apa ini ya"
+//               src={imageUrl} // Use this sample image or upload your own via the Media Explorer
+//               // width="500" // Transform the image: auto-crop to square aspect_ratio
+//               // height="500"
+//               fill
+//               crop={{
+//                 type: "auto",
+//                 source: true,
+//               }}
+//               style={{ marginTop: "2rem" }}
+//             />
+//           ) : (
+//             <Box component="figure">
+//               <AddPhotoAlternateOutlinedIcon />
+//             </Box>
+//           )}
+//         </>
+//       </CldUploadButton>
+
+//       {publicId && <Button>Delete Profile</Button>}
+//     </Container>
+//   );
+// }
 
 // Used Later
 {
