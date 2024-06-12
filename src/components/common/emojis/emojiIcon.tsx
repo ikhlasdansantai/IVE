@@ -23,6 +23,8 @@ export default function EmojiIcon({
         alt={alt}
         className="block h-auto w-6"
         style={{ maxWidth: "100%", height: "auto" }}
+        width={0}
+        height={0}
       />
 
       {total && (
