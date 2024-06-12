@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
-
 import "./globals.css";
-import Navbar from "@/components/layouts/Navbar/Navbar";
+import { Toaster } from "react-hot-toast";
 import LayoutProviders from "@/app/layoutProviders";
 import { Suspense } from "react";
 const manrope = Manrope({ subsets: ["latin"], weight: ["400", "500", "600"] });
@@ -27,6 +26,7 @@ export default async function RootLayout({
         <body className={`${manrope.className} flex flex-col justify-between`}>
           <Suspense fallback={<div>Loading...</div>}>
             <LayoutProviders>
+              <Toaster position="bottom-right" />
               {children}
               <Footer />
             </LayoutProviders>
