@@ -28,6 +28,7 @@ export const {
         session.user.id = token.sub;
         session.user.memberApaHayooo = token.member;
         session.user.role = token.role;
+        session.user.image = token.picture; 
       }
       return session;
     },
@@ -37,6 +38,7 @@ export const {
       const existingUser = await getUserById(token.sub);
       if (!existingUser) return token;
 
+      token.picture = existingUser.image;
       token.role = existingUser.role;
       return token;
     },
