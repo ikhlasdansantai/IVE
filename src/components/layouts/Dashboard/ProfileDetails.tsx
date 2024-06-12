@@ -7,9 +7,9 @@ export default function ProfileDetails({ data }: { data: any }) {
     <div className="w-full">
       <div className="dashboard__header flex items-center justify-between">
         <h1 className="text-xl font-semibold">My Profile</h1>
-        <Button variant="default" size="lg">
+        {/* <Button variant="default" size="lg">
           Edit Profile
-        </Button>
+        </Button> */}
       </div>
       <ul className="mt-6 flex gap-10">
         <li className="space-y-3">
